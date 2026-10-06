@@ -1,0 +1,233 @@
+:root {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --text: #1f2430;
+  --text-muted: #565e6e; /* 6.5:1 on --surface, 6.0:1 on --bg */
+  --border: #c9ced8; /* decorative card edges only */
+  --control-border: #8a90a0; /* 3.2:1 on --surface, for button edges */
+  --accent: #2a4fd6; /* 6.6:1 against white */
+  --accent-text: #ffffff;
+  --danger: #b3261e; /* 6.5:1 on --surface, 6.0:1 on --bg */
+  --focus: #1a3bb0;
+  --radius: 8px;
+
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.app {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+h1 {
+  margin: 0 0 1.25rem;
+  font-size: 1.75rem;
+}
+
+/* Keyboard focus is always visible. */
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* ---------- Buttons ---------- */
+
+button {
+  font: inherit;
+  min-height: 2.5rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--control-border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--text-muted);
+}
+
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+button.danger {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* ---------- Task form (add and edit) ---------- */
+
+.task-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.field label {
+  font-weight: 600;
+}
+
+.field input,
+.field textarea {
+  font: inherit;
+  width: 100%;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--text-muted);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.field textarea {
+  min-height: 4.5rem;
+  resize: vertical;
+}
+
+.field input[aria-invalid='true'] {
+  border-color: var(--danger);
+  border-width: 2px;
+}
+
+.field-error {
+  margin: 0;
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.add-card {
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* ---------- Filter bar ---------- */
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.filter-bar button[aria-pressed='true'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
+/* ---------- Task list ---------- */
+
+.task-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.task-item {
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.task-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.5rem 0.75rem;
+}
+
+.task-toggle {
+  display: flex;
+  flex: 1 1 12rem;
+  min-width: 0;
+  gap: 0.75rem;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.task-toggle input {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0.2rem 0 0;
+}
+
+.task-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.task-title {
+  font-weight: 600;
+}
+
+.task-description {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--text-muted);
+  white-space: pre-wrap;
+}
+
+.task-item.completed .task-title {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit-extras {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ---------- Empty state ---------- */
+
+.empty-state {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+.empty-state strong {
+  display: block;
+  color: var(--text);
+  font-size: 1.1rem;
+}
